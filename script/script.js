@@ -1,21 +1,60 @@
-var textoParaCriptografar = document.querySelector("#textoParaCriptografar");
-var textoCriptografado = document.querySelector("#textoDescriptografado");
+const textoParaCriptografar = document.querySelector("#textoParaCriptografar");
+const mensagemPadrao = document.querySelector("#mensagemPadrao");
+const resultadoContainer = document.querySelector("#resultado__container");
+const textoResultado = document.querySelector("#textoResultado");
 
-function criptografar(){
-    var texto = textoParaCriptografar.value;
-    var textoDescriptografado = texto.replace(/e/g, "enter").replace(/i/g, "imes").replace(/a/g, "ai").replace(/o/g, "ober").replace(/u/g, "ufat");
+const botaoCriptografar = document.querySelector("#botaoCriptografar");
+const botaoDescriptografar = document.querySelector("#botaoDescriptografar");
+const botaoCopiar = document.querySelector("#botaoCopiar");
 
-    document.getElementById('textoDescriptografado').innerHTML = '<textarea readonly id="textoJaDescriptografado">'+ textoDescriptografado +'</textarea>' + '<button class="botao__copiar" onclick="copiar()">Copiar</button>';
-}
-function descriptografar(){
-    var texto = textoParaCriptografar.value;
-    var textoDescriptografado = texto.replace(/enter/g, "e").replace(/imes/g, "i").replace(/ai/g, "a").replace(/ober/g, "o").replace(/ufat/g, "u");
+const regras = {
+    "e": "enter",
+    "i": "imes",
+    "a": "ai",
+    "o": "ober",
+    "u": "ufat"
+};
 
-    document.getElementById('textoDescriptografado').innerHTML = '<textarea readonly id="textoJaDescriptografado">'+ textoDescriptografado +'</textarea>' + '<button class="botao__copiar" onclick="copiar()">Copiar</button>';
+function processarTexto(texto, operacao) {
+    let resultado = texto;
+    for (const vogal in regras) {
+        const substituto = regras[vogal];
+        if (operacao === 'criptografar') {
+            resultado = resultado.replaceAll(vogal, substituto);
+        } else { 
+            resultado = resultado.replaceAll(substituto, vogal);
+        }
+    }
+    return resultado;
 }
-function copiar(){
-    var textoCopiar = document.getElementById("textoJaDescriptografado");
-    textoCopiar.select();
-    navigator.clipboard.writeText(textoCopiar.value);
-    alert("Texto copiado: " + textoCopiar.value);
+
+function mostrarResultado(textoProcessado) {
+    mensagemPadrao.classList.add("hidden");
+    resultadoContainer.classList.remove("hidden");
+    textoResultado.value = textoProcessado;
 }
+
+botaoCriptografar.addEventListener('click', () => {
+    const texto = textoParaCriptografar.value;
+    if (texto.length > 0) {
+        const textoCriptografado = processarTexto(texto, 'criptografar');
+        mostrarResultado(textoCriptografado);
+    }
+});
+
+botaoDescriptografar.addEventListener('click', () => {
+    const texto = textoParaCriptografar.value;
+    if (texto.length > 0) {
+        const textoDescriptografado = processarTexto(texto, 'descriptografar');
+        mostrarResultado(textoDescriptografado);
+    }
+});
+
+botaoCopiar.addEventListener('click', () => {
+    navigator.clipboard.writeText(textoResultado.value).then(() => {
+        botaoCopiar.textContent = "Copiado!";
+        setTimeout(() => {
+            botaoCopiar.textContent = "Copiar";
+        }, 2000); 
+    });
+});
