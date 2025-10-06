@@ -20,7 +20,7 @@
 <p>Por ser um projeto web estático, você pode acessá-lo de duas maneiras:</p>
 
 1. **Visualizar online (Recomendado):**
-   ![GITHUB Pages](https://ariessa-velasques.github.io/decodificador-de-texto/)
+   [GITHUB Pages](https://ariessa-velasques.github.io/decodificador-de-texto/)
 
 2. **Executar localmente:**
    - Faça o download ou clone este repositório.
@@ -29,3 +29,4 @@
 
 ## Autor
 Desenvolvido por **Are**.
+
