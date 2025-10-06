@@ -19,14 +19,12 @@
 ## Como Acessar o Projeto
 <p>Por ser um projeto web estático, você pode acessá-lo de duas maneiras:</p>
 
-1. **Visualizar online (Recomendado):**
-   [GITHUB Pages](https://ariessa-velasques.github.io/decodificador-de-texto/)
+## Como Acessar o Projeto
+<p>Você pode acessar o projeto em funcionamento através do link abaixo:</p>
 
-2. **Executar localmente:**
-   - Faça o download ou clone este repositório.
-   - Navegue até a pasta do projeto.
-   - Abra o arquivo `index.html` no seu navegador de preferência.
+**[Acessar Decodificador de Texto no GitHub Pages](https://ariessa-velasques.github.io/decodificador-de-texto/)**
 
 ## Autor
 Desenvolvido por **Are**.
+
 
